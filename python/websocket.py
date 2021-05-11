@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import asyncio
 import websockets
@@ -113,7 +113,7 @@ class WebSocket:
         loop = asyncio.get_event_loop()
         try:
             async for message in websocket:
-                self.tasks.append(loop.create_task(self.read(message, websocket), name=f"algo{len(self.tasks)}"))
+                self.tasks.append(loop.create_task(self.read(message, websocket)))
         except websockets.exceptions.ConnectionClosed:
             pass
         # async for message in websocket:
