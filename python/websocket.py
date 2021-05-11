@@ -88,26 +88,9 @@ class WebSocket:
         elif message == "bubble":
             await self.bubble_sort(websocket)
         
-        # array = [int(x) for x in random.sample(range(1,101), 100)]
-        # for i in range(len(array)):
-        #     count = 0
-        #     for j in range(len(array) - i - 1):
-        #         if array[j] > array[j+1]:
-        #             count += 1
-        #             array[j], array[j+1] = array[j+1], array[j]
-        #             await websocket.send(f"{array}")
-        #             await asyncio.sleep(0.0159)
-        
         await self.send_message(websocket, f"{self.array} \n\n Done!")
         self.running = False
         self.tasks = []
-        # else:
-        #     if message != self.cur_sort:
-        #         print("stop and restart")
-            # loop = asyncio.get_event_loop()
-            # self.tasks[0].cancel()
-            # self.running = False
-            # self.tasks = []
     
     async def echo(self, websocket, path):
         loop = asyncio.get_event_loop()
@@ -116,22 +99,6 @@ class WebSocket:
                 self.tasks.append(loop.create_task(self.read(message, websocket)))
         except websockets.exceptions.ConnectionClosed:
             pass
-        # async for message in websocket:
-        #     if not self.running:
-        #         self.running = True
-        #         print("running")
-        #         array = [int(x) for x in random.sample(range(1,201), 200)]
-        #         for i in range(len(array)):
-        #             count = 0
-        #             for j in range(len(array) - i - 1):
-        #                 if array[j] > array[j+1]:
-        #                     count += 1
-        #                     array[j], array[j+1] = array[j+1], array[j]
-        #                     await websocket.send(f"{array}")
-        #                     await asyncio.sleep(0.008)
-        #         self.running = False
-            # else:
-            #     print("running")
 
 ws = WebSocket()
 asyncio.get_event_loop().run_until_complete(
