@@ -4,7 +4,6 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Json.Decode as D
 import String exposing (..)
 import Dropdown
 
