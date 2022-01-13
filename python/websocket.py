@@ -3,6 +3,9 @@
 import asyncio
 import websockets
 import random
+from datetime import datetime as dt
+
+PORT = 3456
 
 class WebSocket:
     running = False
@@ -77,7 +80,7 @@ class WebSocket:
             self.tasks.pop(0)
 
         self.running = True
-        print("start")
+        print(f"{dt.now()} >> Message received: {message}")
         await self.init_array()
         await self.send_message(websocket, f"{self.array} \n\n Sorting...")
 
@@ -102,5 +105,6 @@ class WebSocket:
 
 ws = WebSocket()
 asyncio.get_event_loop().run_until_complete(
-    websockets.serve(ws.echo, 'localhost', 3456))
+    websockets.serve(ws.echo, 'localhost', PORT))
+print(f"{dt.now()} >> Websocket server started on port {PORT}")
 asyncio.get_event_loop().run_forever()
